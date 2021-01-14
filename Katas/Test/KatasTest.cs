@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Katas;
 using Katas.Models;
@@ -53,7 +52,7 @@ namespace Test
         }
 
         [Fact]
-        public void GivenMixedInput_ReturnsCorrectly()
+        public void GivenMixedInput_ReturnsExpectedValue()
         {
             // arrange
             var animals1 = new List<Animal> { new Dog(), new Cat(), new Cat() };
