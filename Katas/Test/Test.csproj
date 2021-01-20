@@ -15,5 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KatasProject\KatasProject.csproj" />
+    <ProjectReference Include="..\Threading\Threading.csproj" />
   </ItemGroup>
 </Project>
