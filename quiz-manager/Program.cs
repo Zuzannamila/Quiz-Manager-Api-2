@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using quiz_manager.Services;
+using quiz_manager.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<quiz_manager.Models.zuzannadb1Context>(x => x.UseSqlServer(connectionString));
+builder.Services.AddScoped<IUserDataRepository, UserDataRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
