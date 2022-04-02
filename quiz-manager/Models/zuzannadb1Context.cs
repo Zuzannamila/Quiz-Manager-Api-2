@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace quiz_manager.Models
 {
-    public partial class zuzannadb1Context : DbContext
+    public partial class zuzannadb1Context : IdentityDbContext
     {
         public zuzannadb1Context(DbContextOptions<zuzannadb1Context> options)
         : base(options)
@@ -40,6 +41,7 @@ namespace quiz_manager.Models
                     .HasMaxLength(10)
                     .IsFixedLength();
             });
+            base.OnModelCreating(modelBuilder);
 
             OnModelCreatingPartial(modelBuilder);
         }

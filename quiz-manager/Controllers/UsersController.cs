@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using quiz_manager.Models;
 using quiz_manager.Services.Interfaces;
 
@@ -27,6 +28,7 @@ namespace quiz_manager.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post(User user)
         {
@@ -47,6 +49,7 @@ namespace quiz_manager.Controllers
         [ProducesErrorResponseType(typeof(void))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {

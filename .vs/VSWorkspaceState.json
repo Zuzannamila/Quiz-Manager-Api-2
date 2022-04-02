@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\quiz-manager"
+    "\\quiz-manager",
+    "\\quiz-manager\\ViewModels"
   ],
   "SelectedNode": "\\quiz-manager.sln",
   "PreviewInSolutionExplorer": false
