@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using quiz_manager.Services.Interfaces;
 using quiz_manager.ViewModels;
@@ -10,11 +11,17 @@ namespace quiz_manager.Controllers
         private readonly IJWTTokenGenerator _jwtToken;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        public IdentityController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IJWTTokenGenerator jwtToken)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public IdentityController(
+            UserManager<IdentityUser> userManager, 
+            SignInManager<IdentityUser> signInManager, 
+            IJWTTokenGenerator jwtToken,
+            RoleManager<IdentityRole> roleManager)
         {
             _jwtToken = jwtToken;
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         /// <summary>
@@ -39,12 +46,13 @@ namespace quiz_manager.Controllers
             {
                 return BadRequest();
             }
+            var roles = await _userManager.GetRolesAsync(userFromDb);
             return Ok(new
             {
                 result = result,
                 username = userFromDb.UserName,
                 useremail = userFromDb.Email,
-                token = _jwtToken.GenerateToken(userFromDb)
+                token = _jwtToken.GenerateToken(userFromDb, roles)
             }); ; 
         }
 
@@ -58,8 +66,13 @@ namespace quiz_manager.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost("register")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Register(RegisterModel model)
         {
+            if (!(await _roleManager.RoleExistsAsync(model.Role)))
+            {
+                await _roleManager.CreateAsync(new IdentityRole(model.Role));
+            }
             var userToCreate = new IdentityUser
             {
                 Email = model.Email,
@@ -68,6 +81,8 @@ namespace quiz_manager.Controllers
             var result = await _userManager.CreateAsync(userToCreate, model.Password);
             if (result.Succeeded)
             {
+                var userFromDb = await _userManager.FindByNameAsync(model.UserName);
+                await _userManager.AddToRoleAsync(userFromDb, model.Role);
                 return Ok(result);
             }
             return BadRequest(result);

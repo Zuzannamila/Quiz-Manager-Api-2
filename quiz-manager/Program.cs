@@ -33,6 +33,7 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
         options.User.RequireUniqueEmail = true;
     }).AddEntityFrameworkStores<quiz_manager.Models.zuzannadb1Context>();
+
 builder.Services.AddScoped<IUserDataRepository, UserDataRepository>();
 builder.Services.AddControllers();
 
