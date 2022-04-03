@@ -66,7 +66,7 @@ namespace quiz_manager.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost("register")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             if (!(await _roleManager.RoleExistsAsync(model.Role)))

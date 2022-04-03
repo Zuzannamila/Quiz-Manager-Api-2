@@ -53,6 +53,23 @@ builder.Services.AddAuthentication(cfg =>
         ValidateAudience = false
     };
 });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", admin =>
+    {
+        admin.RequireRole("Admin");
+    });
+    options.AddPolicy("Teacher", teacher =>
+    {
+        teacher.RequireRole("Teacher");
+    });
+    options.AddPolicy("Student", student =>
+    {
+        student.RequireRole("Student");
+    });
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
