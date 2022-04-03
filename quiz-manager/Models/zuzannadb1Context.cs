@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace quiz_manager.Models
 {
-    public partial class zuzannadb1Context : IdentityDbContext
+    public partial class zuzannadb1Context : IdentityDbContext<IdentityUser>
     {
         public zuzannadb1Context(DbContextOptions<zuzannadb1Context> options)
         : base(options)

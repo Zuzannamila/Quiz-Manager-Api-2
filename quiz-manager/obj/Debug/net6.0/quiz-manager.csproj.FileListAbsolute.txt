@@ -74,3 +74,4 @@ C:\Users\zuzanna\source\repos\QuizManager\quiz-manager\quiz-manager\bin\Debug\ne
 C:\Users\zuzanna\source\repos\QuizManager\quiz-manager\quiz-manager\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\zuzanna\source\repos\QuizManager\quiz-manager\quiz-manager\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\zuzanna\source\repos\QuizManager\quiz-manager\quiz-manager\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\zuzanna\source\repos\QuizManager\quiz-manager\quiz-manager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

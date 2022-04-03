@@ -1,12 +1,16 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using quiz_manager.Services;
 using quiz_manager.Services.Interfaces;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
-
+builder.Services.AddScoped<IJWTTokenGenerator, JWTTokenGenerator>();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<quiz_manager.Models.zuzannadb1Context>(x => x.UseSqlServer(connectionString));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -31,6 +35,23 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     }).AddEntityFrameworkStores<quiz_manager.Models.zuzannadb1Context>();
 builder.Services.AddScoped<IUserDataRepository, UserDataRepository>();
 builder.Services.AddControllers();
+
+builder.Services.AddAuthentication(cfg =>
+{
+    cfg.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    cfg.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Token:Key"])),
+        ValidIssuer = configuration["Token:Issuer"],
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

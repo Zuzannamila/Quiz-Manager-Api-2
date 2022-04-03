@@ -28,7 +28,7 @@ namespace quiz_manager.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [Authorize]
+
         [HttpPost]
         public async Task<IActionResult> Post(User user)
         {

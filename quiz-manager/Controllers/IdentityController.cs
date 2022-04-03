@@ -1,15 +1,18 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using quiz_manager.Services.Interfaces;
 using quiz_manager.ViewModels;
 
 namespace quiz_manager.Controllers
 {
     public class IdentityController : ControllerBase
     {
+        private readonly IJWTTokenGenerator _jwtToken;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        public IdentityController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public IdentityController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IJWTTokenGenerator jwtToken)
         {
+            _jwtToken = jwtToken;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -41,8 +44,8 @@ namespace quiz_manager.Controllers
                 result = result,
                 username = userFromDb.UserName,
                 useremail = userFromDb.Email,
-                token = "Token goes here"
-            }); 
+                token = _jwtToken.GenerateToken(userFromDb)
+            }); ; 
         }
 
 
