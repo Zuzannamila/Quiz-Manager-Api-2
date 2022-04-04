@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace quiz_manager.Models
 {
-    public partial class zuzannadb1Context : IdentityDbContext<IdentityUser>
+    public partial class zuzannadb1Context : IdentityDbContext
     {
         public zuzannadb1Context(DbContextOptions<zuzannadb1Context> options)
         : base(options)
         {
         }
-
-        public DbSet<User> Users { get; set; }
+        public DbSet<Quiz> Quizzes { get; set; }
+        public DbSet<Answer> Questions { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,25 +27,6 @@ namespace quiz_manager.Models
                 optionsBuilder.UseSqlServer(connectionString);
         }
     }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-
-                entity.Property(e => e.Email).HasMaxLength(50);
-
-                entity.Property(e => e.Name).HasMaxLength(50);
-
-                entity.Property(e => e.Permissions)
-                    .HasMaxLength(10)
-                    .IsFixedLength();
-            });
-            base.OnModelCreating(modelBuilder);
-
-            OnModelCreatingPartial(modelBuilder);
-        }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }

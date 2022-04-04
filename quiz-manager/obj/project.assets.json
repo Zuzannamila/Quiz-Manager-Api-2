@@ -236,10 +236,10 @@
           "lib/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/6.0.3": {
+      "Microsoft.EntityFrameworkCore.Tools/6.0.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "6.0.3"
+          "Microsoft.EntityFrameworkCore.Design": "6.0.1"
         },
         "compile": {
           "lib/net6.0/_._": {}
@@ -1294,17 +1294,17 @@
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Tools/6.0.3": {
-      "sha512": "s5s19Woo8kFqI9GQrqM6ZT4qS1xLlWuccqfg3ELf8shp93f8btuK6T3iFV//wP1pkRjFB4qbPrQwMO88RKfHXw==",
+    "Microsoft.EntityFrameworkCore.Tools/6.0.1": {
+      "sha512": "jXhlTOcFct3U9YiH9KNfjIHzEPxjXgH7hiriWoZJ0PtT9/GGeWHu9Dblb5D441X+91EMqx7jbpKHNMIu6mvz5w==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.tools/6.0.3",
+      "path": "microsoft.entityframeworkcore.tools/6.0.1",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "lib/net6.0/_._",
-        "microsoft.entityframeworkcore.tools.6.0.3.nupkg.sha512",
+        "microsoft.entityframeworkcore.tools.6.0.1.nupkg.sha512",
         "microsoft.entityframeworkcore.tools.nuspec",
         "tools/EntityFrameworkCore.PS2.psd1",
         "tools/EntityFrameworkCore.PS2.psm1",
@@ -2699,7 +2699,7 @@
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 6.0.3",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.3",
-      "Microsoft.EntityFrameworkCore.Tools >= 6.0.3",
+      "Microsoft.EntityFrameworkCore.Tools >= 6.0.1",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
   },
@@ -2776,7 +2776,7 @@
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[6.0.3, )"
+            "version": "[6.0.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

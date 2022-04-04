@@ -21,7 +21,7 @@
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_Extensions_ApiDescription_Server Condition=" '$(PkgMicrosoft_Extensions_ApiDescription_Server)' == '' ">C:\Users\zuzanna\.nuget\packages\microsoft.extensions.apidescription.server\3.0.0</PkgMicrosoft_Extensions_ApiDescription_Server>
-    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\zuzanna\.nuget\packages\microsoft.entityframeworkcore.tools\6.0.3</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\zuzanna\.nuget\packages\microsoft.entityframeworkcore.tools\6.0.1</PkgMicrosoft_EntityFrameworkCore_Tools>
     <PkgEntityFramework Condition=" '$(PkgEntityFramework)' == '' ">C:\Users\zuzanna\.nuget\packages\entityframework\6.4.4</PkgEntityFramework>
   </PropertyGroup>
 </Project>

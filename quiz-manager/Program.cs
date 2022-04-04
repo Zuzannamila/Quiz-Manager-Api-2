@@ -11,6 +11,7 @@ ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddScoped<IJWTTokenGenerator, JWTTokenGenerator>();
+builder.Services.AddScoped<IQuizDataRepository, QuizDataRepository>();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<quiz_manager.Models.zuzannadb1Context>(x => x.UseSqlServer(connectionString));
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -34,7 +35,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
         options.User.RequireUniqueEmail = true;
     }).AddEntityFrameworkStores<quiz_manager.Models.zuzannadb1Context>();
 
-builder.Services.AddScoped<IUserDataRepository, UserDataRepository>();
 builder.Services.AddControllers();
 
 builder.Services.AddAuthentication(cfg =>

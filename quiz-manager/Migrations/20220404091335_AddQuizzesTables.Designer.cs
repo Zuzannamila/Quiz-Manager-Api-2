@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using quiz_manager.Models;
 
@@ -11,9 +12,10 @@ using quiz_manager.Models;
 namespace quiz_manager.Migrations
 {
     [DbContext(typeof(zuzannadb1Context))]
-    partial class zuzannadb1ContextModelSnapshot : ModelSnapshot
+    [Migration("20220404091335_AddQuizzesTables")]
+    partial class AddQuizzesTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -230,7 +232,7 @@ namespace quiz_manager.Migrations
 
                     b.HasKey("Content");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Answers");
                 });
 
             modelBuilder.Entity("quiz_manager.Models.Quiz", b =>
