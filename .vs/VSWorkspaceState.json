@@ -2,10 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\quiz-manager",
+    "\\quiz-manager\\Controllers",
     "\\quiz-manager\\Services",
     "\\quiz-manager\\Services\\Interfaces",
     "\\quiz-manager\\ViewModels"
   ],
-  "SelectedNode": "\\quiz-manager\\Services\\QuizDataRepository.cs",
   "PreviewInSolutionExplorer": false
 }

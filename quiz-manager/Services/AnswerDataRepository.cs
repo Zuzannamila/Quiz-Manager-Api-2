@@ -16,5 +16,10 @@ namespace quiz_manager.Services
             await _dbContext.SaveChangesAsync();
             return newAnswers;
         }
+
+        public IEnumerable<Answer> GetAnswersForQuestionId(string id)
+        {
+            return _dbContext.Answers.Where(q => q.QuestionId.ToString() == id);
+        }
     }
 }

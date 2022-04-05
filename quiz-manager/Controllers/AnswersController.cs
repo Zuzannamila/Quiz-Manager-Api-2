@@ -64,5 +64,29 @@ namespace quiz_manager.Controllers
             addedAnswers = await _answerDataRepository.AddAnswers(newAnswers);
             return Ok(addedAnswers);
         }
+
+        /// <summary>
+        /// Endpoint responsible for getting answers for question Id
+        /// <remarks>
+        ///
+        /// Secured by jwt token (Authorization header)
+        /// 
+        /// Sample request:
+        ///
+        ///     POST /api/quizzes
+        /// 
+        /// </remarks>
+        /// <param name="id">Question Id</param>
+        /// <response code="200">Answers</response>
+        [ProducesErrorResponseType(typeof(void))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [HttpGet("{id}/answers")]
+        public IActionResult GetQAnswersForQuestion(string id)
+        {
+            IEnumerable<Answer> answers;
+            answers = _answerDataRepository.GetAnswersForQuestionId(id);
+            return Ok(answers);
+        }
     }
 }

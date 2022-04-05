@@ -61,6 +61,45 @@ namespace quiz_manager.Controllers
         }
 
         /// <summary>
+        /// Endpoint responsible for editing quiz
+        /// </summary>
+        /// <remarks>
+        ///
+        /// Secured by jwt token (Authorization header)
+        /// 
+        /// Sample request:
+        ///
+        ///     POST /api/quizzes
+        /// 
+        /// </remarks>
+        /// <param name="id">Quiz id</param>
+        /// <param name="quiz">Quiz</param>
+        /// <response code="200">Updated quiz</response>
+        [ProducesErrorResponseType(typeof(void))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditQuiz(AddQuizViewModel quiz, string id)
+        {
+            if (quiz.Title == null || quiz.Category == null || quiz.Description == null) return BadRequest();
+
+            Guid quizId = Guid.Parse(id);
+            Quiz newQuiz = new Quiz
+            {
+                Id = quizId,
+                Title = quiz.Title,
+                Description = quiz.Description,
+                Category = quiz.Category,
+                TotalCount = 0
+            };
+            Quiz updatedQuiz;
+
+            updatedQuiz = _quizDataRepository.SaveQuiz(newQuiz);
+            return Ok(updatedQuiz);
+        }
+
+        /// <summary>
         /// Endpoint responsible for getting quizzes
         /// <remarks>
         ///

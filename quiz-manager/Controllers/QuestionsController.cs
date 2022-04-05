@@ -37,7 +37,7 @@ namespace quiz_manager.Controllers
         [ProducesErrorResponseType(typeof(void))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [HttpPost("questions/{id}")]
+        [HttpPost("{id}/questions")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddQuestion(AddQuestionViewModel question, string id)
         {
@@ -45,7 +45,7 @@ namespace quiz_manager.Controllers
 
             Guid questionId = Guid.NewGuid();
             Guid quizGuid = Guid.Parse(id);
-            Question newQuiz = new Question
+            Question newQuestion = new Question
             {
                 Id = questionId,
                 QuizId = quizGuid,
@@ -53,9 +53,9 @@ namespace quiz_manager.Controllers
             };
             Question addedQuestion;
 
-            addedQuestion = await _questionDataRepository.AddQuestion(newQuiz);
+            addedQuestion = await _questionDataRepository.AddQuestion(newQuestion);
             if (addedQuestion == null) return BadRequest();
-            return Ok(newQuiz);
+            return Ok(newQuestion);
         }
 
         /// <summary>
